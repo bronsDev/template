@@ -60,6 +60,7 @@ gulp.task('compass-compile', function() {
 	gulp.src('./src/sass/*.scss')
 		.pipe(compass({
 		  css: './src/css',
+		  image: './src/img',
 		  sass: './src/sass'
 		}))
 		.pipe(autoprefixer('last 2 versions', 'ie 8', 'ie 9'))

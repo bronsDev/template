@@ -71,11 +71,11 @@
 }
 
 @mixin retinabg($url, $url2x, $size, $position, $repeat) {
-	background-image: url($url);
+	background-image: image-url($url);
 	background-repeat: $repeat;
 	background-position: $position;
 	@media #{$media-retina} {
-		background-image: url($url2x);
+		background-image: image-url($url2x);
 		background-size: $size;
 	}
 }
