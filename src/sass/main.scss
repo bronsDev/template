@@ -1,0 +1,16 @@
+@import 'base';
+@import 'vendor/jquery.bxslider.css';
+
+body {
+	line-height: 1.4;
+	font-size: 14px;
+}
+
+
+//Blocks
+//
+@import 'blocks/_header';
+
+// ...
+
+@import 'blocks/_footer';

@@ -1,0 +1,249 @@
+// Responsive from large to small
+$media-desktop: "screen and (max-width: 1230px)"; // 1024-1280
+$media-tablet: "screen and (max-width: 1023px)"; // 768-1024
+$media-phone-landscape: "screen and (max-width: 767px)"; // 480-767 (large phones included, ipad vertical - not)
+$media-phone: "screen and (max-width: 479px)"; // 320-479 (iphone 4 landscape not included)
+
+
+// Grid settings
+
+$number-of-columns: 12;
+
+$default-column-width: 5.833333 / 100;
+$default-column-margin: 2.5 / 100;
+
+@function getcolumnwidth($num, $num-of-columns: $number-of-columns){
+	@return percentage(($default-column-width * $num + $default-column-margin * ($num - 1)) * $number-of-columns / $num-of-columns);
+}
+
+@function getcolumnmargin($num-of-columns: $number-of-columns){
+	@return percentage($default-column-margin * $number-of-columns / $num-of-columns);
+}
+
+
+@mixin columnizer($num, $num-of-columns: $number-of-columns){
+	@extend .column;
+	$nnum: nth($num, 1);
+	$nnum-of-columns: nth($num-of-columns, 1);
+
+	width: getcolumnwidth($nnum, $nnum-of-columns);
+	margin-left: getcolumnmargin($nnum-of-columns);
+
+	$oldnum: $nnum;
+	$oldcols: $nnum-of-columns;
+
+	@if length($num) > 1 {
+		$nnum: nth($num, 2);
+	}
+	@if length($num-of-columns) > 1 {
+		$nnum-of-columns: nth($num-of-columns, 2);
+	}
+
+	@if ($nnum != $oldnum) or ($nnum-of-columns != $oldcols) {
+		@media #{$media-desktop} {
+			width: getcolumnwidth($nnum, $nnum-of-columns);
+			margin-left: getcolumnmargin($nnum-of-columns);
+		}
+	}
+
+	$oldnum: $nnum;
+	$oldcols: $nnum-of-columns;
+
+	@if length($num) > 2 {
+		$nnum: nth($num, 3);
+	}
+	@if length($num-of-columns) > 2 {
+		$nnum-of-columns: nth($num-of-columns, 3);
+	}
+
+	@if ($nnum != $oldnum) or ($nnum-of-columns != $oldcols) {
+		@media #{$media-tablet} {
+			width: getcolumnwidth($nnum, $nnum-of-columns);
+			margin-left: getcolumnmargin($nnum-of-columns);
+		}
+	}
+
+	$oldnum: $nnum;
+	$oldcols: $nnum-of-columns;
+
+	@if length($num) > 3 {
+		$nnum: nth($num, 4);
+	}
+	@if length($num-of-columns) > 3 {
+		$nnum-of-columns: nth($num-of-columns, 4);
+	}
+
+	@if ($nnum != $oldnum) or ($nnum-of-columns != $oldcols) {
+		@media #{$media-phone-landscape} {
+			width: getcolumnwidth($nnum, $nnum-of-columns);
+			margin-left: getcolumnmargin($nnum-of-columns);
+		}
+	}
+
+	$oldnum: $nnum;
+	$oldcols: $nnum-of-columns;
+
+	@if length($num) > 4 {
+		$nnum: nth($num, 5);
+	}
+	@if length($num-of-columns) > 4 {
+		$nnum-of-columns: nth($num-of-columns, 5);
+	}
+
+	@if ($nnum != $oldnum) or ($nnum-of-columns != $oldcols) {
+		@media #{$media-phone} {
+			width: getcolumnwidth($nnum, $nnum-of-columns);
+			margin-left: getcolumnmargin($nnum-of-columns);
+		}
+	}
+}
+
+@mixin columnizerOffset($num, $num-of-columns: $number-of-columns){
+	@extend .column;
+	$nnum: nth($num, 1);
+	$nnum-of-columns: nth($num-of-columns, 1);
+
+	margin-left: getcolumnmargin($nnum-of-columns)*2 + getcolumnwidth($nnum, $nnum-of-columns);
+
+	$oldnum: $nnum;
+	$oldcols: $nnum-of-columns;
+
+	@if length($num) > 1 {
+		$nnum: nth($num, 2);
+	}
+	@if length($num-of-columns) > 1 {
+		$nnum-of-columns: nth($num-of-columns, 2);
+	}
+
+	@if ($nnum != $oldnum) or ($nnum-of-columns != $oldcols) {
+		@media #{$media-desktop} {
+			margin-left: getcolumnmargin($nnum-of-columns)*2 + getcolumnwidth($nnum, $nnum-of-columns);
+		}
+	}
+
+	$oldnum: $nnum;
+	$oldcols: $nnum-of-columns;
+
+	@if length($num) > 2 {
+		$nnum: nth($num, 3);
+	}
+	@if length($num-of-columns) > 2 {
+		$nnum-of-columns: nth($num-of-columns, 3);
+	}
+
+	@if ($nnum != $oldnum) or ($nnum-of-columns != $oldcols) {
+		@media #{$media-tablet} {
+			margin-left: getcolumnmargin($nnum-of-columns)*2 + getcolumnwidth($nnum, $nnum-of-columns);
+		}
+	}
+
+	$oldnum: $nnum;
+	$oldcols: $nnum-of-columns;
+
+	@if length($num) > 3 {
+		$nnum: nth($num, 4);
+	}
+	@if length($num-of-columns) > 3 {
+		$nnum-of-columns: nth($num-of-columns, 4);
+	}
+
+	@if ($nnum != $oldnum) or ($nnum-of-columns != $oldcols) {
+		@media #{$media-phone-landscape} {
+			margin-left: getcolumnmargin($nnum-of-columns)*2 + getcolumnwidth($nnum, $nnum-of-columns);
+		}
+	}
+
+	$oldnum: $nnum;
+	$oldcols: $nnum-of-columns;
+
+	@if length($num) > 4 {
+		$nnum: nth($num, 5);
+	}
+	@if length($num-of-columns) > 4 {
+		$nnum-of-columns: nth($num-of-columns, 5);
+	}
+
+	@if ($nnum != $oldnum) or ($nnum-of-columns != $oldcols) {
+		@media #{$media-phone} {
+			margin-left: getcolumnmargin($nnum-of-columns)*2 + getcolumnwidth($nnum, $nnum-of-columns);
+		}
+	}
+}
+
+@mixin columnizerParent($num-of-columns: $number-of-columns) {
+	position: relative;
+	$nnum-of-columns: nth($num-of-columns, 1);
+	
+	margin-left: - getcolumnmargin($nnum-of-columns);
+
+	$oldcols: $nnum-of-columns;
+	@if length($num-of-columns) > 1 {
+		$nnum-of-columns: nth($num-of-columns, 2);
+	}
+	@if $nnum-of-columns != $oldcols {
+		@media #{$media-desktop} {
+			margin-left: - getcolumnmargin($nnum-of-columns);
+		}
+	}
+
+	$oldcols: $nnum-of-columns;
+	@if length($num-of-columns) > 2 {
+		$nnum-of-columns: nth($num-of-columns, 3);
+	}
+	@if $nnum-of-columns != $oldcols {
+		@media #{$media-tablet} {
+			margin-left: - getcolumnmargin($nnum-of-columns);
+		}
+	}
+
+	$oldcols: $nnum-of-columns;
+	@if length($num-of-columns) > 3 {
+		$nnum-of-columns: nth($num-of-columns, 4);
+	}
+	@if $nnum-of-columns != $oldcols {
+		@media #{$media-phone-landscape} {
+			margin-left: - getcolumnmargin($nnum-of-columns);
+		}
+	}
+
+	$oldcols: $nnum-of-columns;
+	@if length($num-of-columns) > 4 {
+		$nnum-of-columns: nth($num-of-columns, 5);
+	}
+	@if $nnum-of-columns != $oldcols {
+		@media #{$media-phone} {
+			margin-left: - getcolumnmargin($nnum-of-columns);
+		}
+	}
+	
+	&:after {
+		content: '';
+		display: block;
+		clear: left;
+	}
+}
+
+@mixin adaptiveMarginBottom($multiplier: 1){
+	margin-bottom: percentage($default-column-margin * $multiplier);
+}
+
+.columns {
+	width: auto;
+	@include columnizerParent;
+}
+
+.column {
+	float: left;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.wp-grid {
+	width: 95%;
+	max-width: 1170px;
+	margin: 0 auto;
+	position: relative;
+}
+
+
