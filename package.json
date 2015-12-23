@@ -25,6 +25,7 @@
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
     "gulp-watch": "^4.3.5",
+    "require-dir": "^0.3.0",
     "run-sequence": "^1.1.5"
   }
 }
